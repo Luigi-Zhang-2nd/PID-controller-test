@@ -10,7 +10,10 @@ public class Height {
     CANSparkMax Height_Motor = new CANSparkMax(Constants.Height_Motor_CAN_ID, MotorType.kBrushless);
     SparkAbsoluteEncoder Height_Pos = Height_Motor.getAbsoluteEncoder();
     SparkPIDController PIDController = Height_Motor.getPIDController();
-
+    /**
+     * set the speed of the height motor
+     * @param speed
+     */
     public void Height_Set_speed(double speed){
         Height_Motor.set(speed);
     }
@@ -18,7 +21,9 @@ public class Height {
     public void Height_Motor_Stop(){
         Height_Motor.stopMotor();
     }
-
+    /**
+     * dont seem to work, but would be nice if it can set the 0 offset of the encoder
+     */
     public void Pos_Init(){
         Height_Pos.setZeroOffset(0);
     }
