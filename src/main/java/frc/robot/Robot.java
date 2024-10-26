@@ -21,7 +21,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   PS4Controller Controller = new PS4Controller(0); // Controller object
-  Height Height = new Height(); //the height motor object
+  Height Height = new Height(15); //the height motor object
   
 
   /**

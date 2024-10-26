@@ -5,9 +5,18 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkAbsoluteEncoder;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkMax;
-
-public class Height {
-    CANSparkMax Height_Motor = new CANSparkMax(Constants.Height_Motor_CAN_ID, MotorType.kBrushless);
+/**
+ * The class is for the rotational angle of a motor (for the shooter)
+ */
+public class Height  {
+    CANSparkMax Height_Motor;
+    /**
+     * Takes the Can_ID value to create a brushless spark max controller object
+     * @param CAN_ID
+     */
+    public Height(int CAN_ID){
+        Height_Motor = new CANSparkMax(CAN_ID, MotorType.kBrushless);
+    }
     SparkAbsoluteEncoder Height_Pos = Height_Motor.getAbsoluteEncoder();
     SparkPIDController PIDController = Height_Motor.getPIDController();
     /**
@@ -17,7 +26,6 @@ public class Height {
     public void Height_Set_speed(double speed){
         Height_Motor.set(speed);
     }
-    
     public void Height_Motor_Stop(){
         Height_Motor.stopMotor();
     }
@@ -37,7 +45,7 @@ public class Height {
         PIDController.setI(1e-4);
         PIDController.setD(1);
         PIDController.setFF(0);
-        PIDController.setOutputRange(-0.05, 0.05);
+        PIDController.setOutputRange(-0.06, 0.06);
         PIDController.setReference(pos, CANSparkMax.ControlType.kPosition);
 
     }
